@@ -1,0 +1,5 @@
+[
+  { "idLocal": 1, "descripcion": "Centro de Distribución Norte" },
+  { "idLocal": 2, "descripcion": "Centro de Distribución Sur" },
+  { "idLocal": 3, "descripcion": "Almacén Central" }
+]
