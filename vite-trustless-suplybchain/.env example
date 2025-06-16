@@ -1,0 +1,8 @@
+# Lista de usuarios en formato JSON. Cada objeto debe tener id (number) y name (string).
+
+    
+# Web3 vars
+VITE_ANVIL_URL=http://127.0.0.1:8545
+VITE_ANVIL_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
+# 2nd Anvil key for local dev
+VITE_ANVIL_PRIVATE_KEY=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d

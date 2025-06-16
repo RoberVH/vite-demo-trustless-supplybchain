@@ -1,0 +1,9 @@
+
+[
+    {"id":1,"name":"Buyer", "role":"buyer", "privateKey":""},
+    {"id":2,"name":"Seller", "role":"seller", "privateKey":""},
+    {"id":3,"name":"Warehouse", "role":"warehouse", "privateKey":""}
+]
+
+
+

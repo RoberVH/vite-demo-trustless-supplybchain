@@ -5,10 +5,11 @@
 /**
  * Represents a user in the system.
  */
-export interface User {
-  id: number;
-  name: string;
-}
+// export interface User {
+//   id: number;
+//   name: string;
+//   role: string;
+// }
 
 /**
  * Represents a location entry for delivery.
@@ -26,19 +27,11 @@ export interface Document {
   descripcion: string;
 }
 
-/**
- * Shape of the contract form data.
- */
-export interface ContractFormData {
-  contractId: string;
-  creationDate: string;
-  description: string;
-  units: number;
-  lote: string;
-  unitPrice: number;
-  maxDeliveryDate: string;
-  realDeliveryDate: string;
-  minDaysValidity: number;
-  locationDelivery: number; // idLocal
-  requiredDocuments: number[]; // array of idDoc
+
+
+export interface LocalUser {
+  id:number;
+  name: string;
+  role: string;
+  privateKey: string;
 }

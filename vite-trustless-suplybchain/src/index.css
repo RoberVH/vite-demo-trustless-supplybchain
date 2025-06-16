@@ -1,2 +1,44 @@
+
 @import "tailwindcss";
+
+/* src/index.css */
+@layer base {
+:root {
+  /* Form */
+  --trustless-form-bg: #93c5fd;          /* tailwind blue-300 */
+  --trustless-form-text: #ffffff;       /* white */
+
+  /* Label */
+  --trustless-label-text: #f3f4f6;       /* gray-100 */
+
+  /* Inputs, selects, textarea */
+  --trustless-input-bg: #eff6ff;         /* blue-50 */
+  --trustless-input-border: #bfdbfe;     /* blue-200 */
+  --trustless-input-text: #1e3a8a;       /* blue-900 */
+  --trustless-focus-ring: #3b82f6;       /* blue-500 */
+
+  /* Primary button */
+  --trustless-btn-bg: #2563eb;           /* blue-600 */
+  --trustless-btn-text: #ffffff;         /* white */
+  --trustless-btn-hover-bg: #1d4ed8;     /* blue-700 */
+  --trustless-btn-focus-ring: #93c5fd;   /* blue-300 */
+
+  /* Secondary button */
+  --trustless-secondary-btn-bg: #ffffff; /* white */
+  --trustless-secondary-btn-text: #2563eb;/* blue-600 */
+  --trustless-secondary-btn-border: #2563eb;/* blue-600 */
+  --trustless-secondary-btn-hover-bg: #eff6ff;/* blue-50 */
+
+  /* Document list */
+  --trustless-doc-list-bg: #dbeafe;      /* blue-100 */
+  --trustless-doc-list-border: #bfdbfe;  /* blue-200 */
+  --trustless-doc-list-text: #1d4ed8;    /* blue-700 */
+
+  /* Error */
+  --trustless-error-text: #ef4444;       /* red-500 */
+}
+}
+
+
+
 

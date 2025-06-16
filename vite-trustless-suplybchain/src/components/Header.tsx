@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Menu, {menuItems, type MenuId} from "./Menu";
 import { useNavigate } from "react-router-dom";
-import Opcion2Selector from "./Opcion2Selector";
-import Opcion3Selector from "./Opcion3Selector";
+
 
 /**
  * Header component with:
@@ -42,6 +41,7 @@ const Header: React.FC = () => {
     setSelected(null)
     navigate('/')
   }
+  
 
   return (
     <>
@@ -51,7 +51,7 @@ const Header: React.FC = () => {
         <div>
           <span className="text-xl font-bold md:text-2xl  ">
             <button className="hover:cursor-pointer focus:outline-none" onClick={selectLandigPage}>
-              Trustless SupplyChain
+              Trustless Sales Agreement
             </button>
             </span>
         </div>

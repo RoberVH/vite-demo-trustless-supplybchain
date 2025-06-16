@@ -1,13 +1,14 @@
-import React, { createContext, useState, type ReactNode, useEffect } from "react";
-import type { User } from "../types";
+import React, { createContext, useState, type ReactNode, useEffect } from "react"
+import localUsers from "../web3/localUsers.json" 
+import type { LocalUser } from "../types"
 
 /**
  * Context that holds the currently selected user and a function to update it.
  */
 interface UserContextProps {
-  currentUser: User | null;
-  setCurrentUser: (user: User) => void;
-  users: User[];
+  currentUser: LocalUser | null;
+  setCurrentUser: (user: LocalUser) => void;
+  users: LocalUser[];
 }
 
 export const UserContext = createContext<UserContextProps>({
@@ -25,13 +26,12 @@ interface UserProviderProps {
  * and exposes the user list and currently selected user.
  */
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<LocalUser[]>([]);
+  const [currentUser, setCurrentUser] = useState<LocalUser | null>(null);
 
   useEffect(() => {
     try {
-      const raw = import.meta.env.VITE_USERS as string;
-      const parsed: User[] = JSON.parse(raw);
+      const parsed: LocalUser[] = localUsers;
       setUsers(parsed);
       // Default al primer usuario
       if (parsed.length > 0) {

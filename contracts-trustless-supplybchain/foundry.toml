@@ -1,0 +1,14 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+[rpc_endpoints]
+anvil = "http://127.0.0.1:8545"           #  Anvil local network  
+holesky = "https://1rpc.io/holesky"  # RPC oficial Holesky 
+
+[profile.chains]
+anvil = 31337       # ChainId Anvil (Hardhat/Foundry local)
+holesky = 17000     # ChainId oficial de Holesky (Base testnet)
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
