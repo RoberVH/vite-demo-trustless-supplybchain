@@ -1,0 +1,45 @@
+.font-system-ui {
+  font-family: var(--font-system-ui);
+}
+.font-transitional {
+  font-family: var(--font-transitional);
+}
+.font-old-style {
+  font-family: var(--font-old-style);
+}
+.font-humanist {
+  font-family: var(--font-humanist);
+}
+.font-geometric-humanist {
+  font-family: var(--font-geometric-humanist);
+}
+.font-classical-humanist {
+  font-family: var(--font-classical-humanist);
+}
+.font-neo-grotesque {
+  font-family: var(--font-neo-grotesque);
+}
+.font-monospace-slab-serif {
+  font-family: var(--font-monospace-slab-serif);
+}
+.font-monospace-code {
+  font-family: var(--font-monospace-code);
+}
+.font-industrial {
+  font-family: var(--font-industrial);
+}
+.font-rounded-sans {
+  font-family: var(--font-rounded-sans);
+}
+.font-slab-serif {
+  font-family: var(--font-slab-serif);
+}
+.font-antique {
+  font-family: var(--font-antique);
+}
+.font-didone {
+  font-family: var(--font-didone);
+}
+.font-handwritten {
+  font-family: var(--font-handwritten);
+}

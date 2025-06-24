@@ -1,44 +1,137 @@
-
-@import "tailwindcss";
-
 /* src/index.css */
-@layer base {
+/*  Reset + Open Props + Tailwind CSS-first */
+
+@import "tailwindcss"  source("../");
+/* @source "./src*.{js,ts,jsx,tsx,html}" */
+/* @import "open-props/normalize"; */
+@import "open-props/style";
+
+
+/* Fonts  */
+@import "../src/styles/fonts.css";
+
 :root {
-  /* Form */
-  --trustless-form-bg: #93c5fd;          /* tailwind blue-300 */
-  --trustless-form-text: #ffffff;       /* white */
 
-  /* Label */
-  --trustless-label-text: #f3f4f6;       /* gray-100 */
 
-  /* Inputs, selects, textarea */
-  --trustless-input-bg: #eff6ff;         /* blue-50 */
-  --trustless-input-border: #bfdbfe;     /* blue-200 */
-  --trustless-input-text: #1e3a8a;       /* blue-900 */
-  --trustless-focus-ring: #3b82f6;       /* blue-500 */
+} 
 
-  /* Primary button */
-  --trustless-btn-bg: #2563eb;           /* blue-600 */
-  --trustless-btn-text: #ffffff;         /* white */
-  --trustless-btn-hover-bg: #1d4ed8;     /* blue-700 */
-  --trustless-btn-focus-ring: #93c5fd;   /* blue-300 */
+/* 3)  CSS-first open-props Tokens vars*/
+@theme {
+  /* Typographie */
+  --fs-sm:        var(--font-size-2);
+  --fs-base:      var(--font-size-4);
+  --fs-lg:        var(--font-size-6);
+  --leading-copy: var(--leading-6);
+  
+  /* light theme */
+  /* --base-app-color:      #3C6592; */
+  --site-color:             #3C6592;
+  --base-app-color:      #FFFFFF;
+  --white: #FFFFFF;
+   
+  --color-site-primary:           var(--site-color); 
+  --color-menu-primary:            var(--stone-9);
+  --color-primary:                var(--base-app-color); 
+   --color-primary-focus:         var(--gray-8);
+   --color-primary-foreground:    var(--white);
+   
+   
+   --color-secondary:             var(--white); 
+   --color-secondary-focus:       var(--violet-8);
+   --color-secondary-foreground:  var(--base-app-color);
+   
+   --color-muted:                 var(--color-gray-400);
+   --color-background:            var(--gray-0);
+   --color-foreground:            var(--gray-12);
 
-  /* Secondary button */
-  --trustless-secondary-btn-bg: #ffffff; /* white */
-  --trustless-secondary-btn-text: #2563eb;/* blue-600 */
-  --trustless-secondary-btn-border: #2563eb;/* blue-600 */
-  --trustless-secondary-btn-hover-bg: #eff6ff;/* blue-50 */
+   --color-button-secondary:      var(--blue-4);
+   --color-button-add:            var(--green-9);
+   
 
-  /* Document list */
-  --trustless-doc-list-bg: #dbeafe;      /* blue-100 */
-  --trustless-doc-list-border: #bfdbfe;  /* blue-200 */
-  --trustless-doc-list-text: #1d4ed8;    /* blue-700 */
+  --color-destructive:            var(--white);
+  --color-destructive-foreground: var(--red-7);
 
-  /* Error */
-  --trustless-error-text: #ef4444;       /* red-500 */
+    --color-success:              var(--blue-2);
+    --color-error:                var(--red-5);
+    --color-info:                 var(--blue-2);
+    --color-warning:              var(--yellow-2);
+    --color-danger:               var(--blue-2);
+    --color-light:                var(--blue-2);
+    --color-dark:                 var(--blue-2);
+  
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
+@variant dark {
+  /* Dark theme */
+  --color-primary:            var(--blue-4);
+  --color-primary-foreground: var(--gray-1);
+  --color-primary-focus:      var(--blue-5);
+
+  --color-secondary:            var(--violet-5);
+  --color-secondary-foreground: var(--white);
+
+  --color-destructive:            var(--red-7);
+  --color-destructive-foreground: var(--gray-1);
+
+  --color-muted:             var(--stone-11);
+  --color-muted-foreground:  var(--gray-1);
+
+  --color-background:        var(--gray-12);
+  --color-foreground:        var(--gray-1);
 }
 
+/* 4)  global  */
+@layer base {
+
+}
+
+/* Specific components */
+@layer components {
+
+  /* .menu-selected {
+    @apply text-site-primary font-semibold before:content-[''] before:absolute before:inset-0  before:rounded-3xl 
+    before:bg-site-primary/20 before:blur before:opacity-70;
+  }
+   */
+    .menu-selected {
+    @apply text-site-primary font-semibold  bg-background rounded-2xl ;
+  }
+
+  .form-container {
+    @apply space-y-4  mx-auto  shadow-[var(--shadow-5)] p-4 text-xs 
+  }
+
+  .form-field {
+    @apply relative mb-6;
+  }
+  .form-label {
+    @apply absolute left-3  text-muted text-sm transition-all duration-200 ease-in-out px-1 top-0 translate-y-[25%]; 
+  }
+  
+  .form-input,
+  .form-select {
+    @apply bg-secondary border border-muted rounded-md px-3 py-2 w-full text-site-primary;
+  }
+
+  .form-input:focus + .form-label,
+  .form-input:not(:placeholder-shown) + .form-label,
+  .form-select:focus + .form-label,
+  .form-select:not(:placeholder-shown) + .form-label {
+    @apply top-[-0.75rem] left-2 text-xs bg-secondary px-1;
+  }
+  .form-error {
+    @apply mt-1 text-sm text-error; 
+  }
 
 
+  .button-submit-form {
+    @apply py-0.5 bg-site-primary text-primary-foreground text-sm rounded-lg  focus:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
+    shadow hover:bg-site-primary/50 hover:text-secondary-foreground  active:scale-95  transition;
+  }
 
+  .button-add {
+    @apply bg-button-add rounded-lg p-2 text-secondary text-xs  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
+    shadow hover:bg-button-add/50 hover:text-secondary-foreground  active:scale-90  transition;
+  }
+}

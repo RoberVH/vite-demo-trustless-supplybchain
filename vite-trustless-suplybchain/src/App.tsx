@@ -15,12 +15,12 @@ const App: React.FC = () => {
   return (
  <UserProvider>
       <BrowserRouter>
-        <div className=" flex flex-col h-screen">
+        <div className=" flex flex-col h-screen font-system-ui text-primary-foreground">
           {/*Header fixed all time */}
           <Header />
 
           {/* Page main body displays component according to path selected */}
-          <main className="flex-grow bg-gray-100 overflow-y-auto">
+          <main className="flex-grow  overflow-y-auto bg-primary ">
             <Routes>
               {/* default route */}
               <Route

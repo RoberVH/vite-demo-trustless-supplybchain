@@ -8,14 +8,14 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import { ContractSchema, type ContractFormDataType, documentTypes } from "../lib/validators/contractValidator"
 import type { Location, Document } from "../types"
 
-interface contractFormProps {
+
+interface ContractFormProps {
   onSubmit: SubmitHandler<ContractFormDataType>
   initialData?: Partial<ContractFormDataType>
 }
 
-export function CreateContractForm({ onSubmit, initialData }: contractFormProps) {
+export function CreateContractForm({ onSubmit, initialData }: ContractFormProps) {
   const [selectedDoc, setSelectedDoc] = useState<number>(1)
-
   const {
     register,
     handleSubmit,
@@ -24,6 +24,7 @@ export function CreateContractForm({ onSubmit, initialData }: contractFormProps)
     watch,
   } = useForm<ContractFormDataType>({
     resolver: valibotResolver(ContractSchema),
+    //mode: "onChange",
     defaultValues: initialData || {
       unit: 0,
       unitPrice: 0.01,
@@ -33,6 +34,11 @@ export function CreateContractForm({ onSubmit, initialData }: contractFormProps)
       documents: [],
     },
   })
+
+  useEffect(() => {
+  console.log("Errores actuales:", errors)
+}, [errors])
+
 
   const currentDocuments = watch("documents", []) || []
 
@@ -51,270 +57,167 @@ export function CreateContractForm({ onSubmit, initialData }: contractFormProps)
   }
 
   return (
+    <div className="w-128 mx-auto">
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="
-        bg-[var(--trustless-form-bg)]
-        text-[var(--trustless-form-text)]
-        p-4 block text-sm mb-1
-        md:max-w-[60%] mx-auto
-      "
+      className="form-container"
     >
+      <div className="bg-site-primary   mt-2 rounded-xl">
+        <p className="text-center text-primary-foreground text-sm p-2 ">
+          Crear Contrato
+        </p>
+      </div>
       {/* Unit Field */}
-      <div>
-        <label
-          htmlFor="unit"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
-        >
-          Unidades
-        </label>
+      <div className="form-field">
         <input
           id="unit"
           type="number"
           {...register("unit", { valueAsNumber: true })}
-          className="
-            w-full
-            bg-[var(--trustless-input-bg)]
-            border border-[var(--trustless-input-border)]
-            text-[var(--trustless-input-text)]
-            text-sm rounded-md
-            focus:ring-[var(--trustless-focus-ring)]
-            focus:border-[var(--trustless-focus-ring)]
-            p-2 transition
-          "
+          className="form-input"
         />
+        <label
+          htmlFor="unit"
+          className="form-label"
+        >
+          Unidades
+        </label>
         {errors.unit && (
-          <p className="mt-1 text-sm text-[var(--trustless-error-text)]">
-            {errors.unit.message}
-          </p>
+          <p className="mt-1 text-sm text-error">{errors.unit.message}</p>
         )}
       </div>
 
       {/* Unit Price Field */}
-      <div>
-        <label
-          htmlFor="unitPrice"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
-        >
-          Precio Unitario ($)
-        </label>
+      <div className="form-field">
         <input
           id="unitPrice"
           type="number"
           step="0.01"
           {...register("unitPrice", { valueAsNumber: true })}
-          className="
-            w-full
-            bg-[var(--trustless-input-bg)]
-            border border-[var(--trustless-input-border)]
-            text-[var(--trustless-input-text)]
-            text-sm rounded-md
-            focus:ring-[var(--trustless-focus-ring)]
-            focus:border-[var(--trustless-focus-ring)]
-            p-2 transition
-          "
+          className="form-input"
         />
+        <label
+          htmlFor="unitPrice"
+          className="form-label"
+        >
+          Precio Unitario ($)
+        </label>
         {errors.unitPrice && (
-          <p className="mt-1 text-sm text-[var(--trustless-error-text)]">
-            {errors.unitPrice.message}
-          </p>
+          <p className="mt-1 text-sm text-error">{errors.unitPrice.message}</p>
         )}
       </div>
-
       {/* Date Field */}
-      <div>
-        <label
-          htmlFor="date"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
-        >
-          Fecha
-        </label>
+      <div className="form-field">
         <input
           id="date"
           type="date"
           {...register("date")}
-          className="
-            w-full
-            bg-[var(--trustless-input-bg)]
-            border border-[var(--trustless-input-border)]
-            text-[var(--trustless-input-text)]
-            text-sm rounded-md
-            focus:ring-[var(--trustless-focus-ring)]
-            focus:border-[var(--trustless-focus-ring)]
-            p-2 transition
-          "
+          className="form-input"
         />
+        <label
+          htmlFor="date"
+          className="form-label"
+        >
+          Fecha
+        </label>
         {errors.date && (
-          <p className="mt-1 text-sm text-[var(--trustless-error-text)]">
-            {errors.date.message}
-          </p>
+          <p className="mt-1 text-sm text-error">{errors.date.message}</p>
         )}
       </div>
 
-      {/* Description and lote Fields */}
-      <div>
-        <label
-          htmlFor="description"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
-        >
-          Descripción (Opcional)
-        </label>
+      {/* Description Field */}
+      <div className="form-field">
         <textarea
           id="description"
           {...register("description")}
-          className="
-            w-2xl
-            bg-[var(--trustless-input-bg)]
-            border border-[var(--trustless-input-border)]
-            text-[var(--trustless-input-text)]
-            text-sm rounded-md
-            focus:ring-[var(--trustless-focus-ring)]
-            focus:border-[var(--trustless-focus-ring)]
-            p-2 transition
-          "
+          className="form-input"
         />
-      </div>
-      <div>
         <label
-          htmlFor="lote"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
+          htmlFor="description"
+          className="form-label"
         >
-          Lote (Opcional)
+          Descripción
         </label>
+      </div>
+
+      {/* Lote Field */}
+      <div className="form-field">
         <input
           id="lote"
           type="text"
           {...register("lote")}
-          className="
-            w-full
-            bg-[var(--trustless-input-bg)]
-            border border-[var(--trustless-input-border)]
-            text-[var(--trustless-input-text)]
-            text-sm rounded-md
-            focus:ring-[var(--trustless-focus-ring)]
-            focus:border-[var(--trustless-focus-ring)]
-            p-2 transition
-          "
+          className="form-input"
         />
+        <label
+          htmlFor="lote"
+          className="form-label"
+        >
+          Lote (Opcional)
+        </label>
       </div>
 
       {/* Documents Field */}
-      <div>
-        <label
-          htmlFor="document-selector"
-          className="
-            block text-[var(--trustless-label-text)]
-            font-semibold text-sm mb-1
-          "
-        >
-          Documentos (Opcional)
-        </label>
-        <div className="flex items-center space-x-2 mt-1">
-          <select
-            id="document-selector"
-            value={selectedDoc}
-            onChange={(e) => setSelectedDoc(Number(e.target.value))}
-            className="
-              w-full
-              bg-[var(--trustless-input-bg)]
-              border border-[var(--trustless-input-border)]
-              text-[var(--trustless-input-text)]
-              text-sm rounded-md
-              focus:ring-[var(--trustless-focus-ring)]
-              focus:border-[var(--trustless-focus-ring)]
-              p-2 transition
-            "
+      <div className="form-field">
+      <div className="flex items-baseline gap-2">
+        <div className="flex-1 ">
+            <select
+              id="document-selector"
+              value={selectedDoc}
+              onChange={(e) => setSelectedDoc(Number(e.target.value))}
+            className="form-input  w-full"
+            >
+              {Object.entries(documentTypes).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          <label
+            htmlFor="document-selector"
+            className="form-label"
           >
-            {Object.entries(documentTypes).map(([key, value]) => (
-              <option key={key} value={key}>
-                {value}
-              </option>
-            ))}
-          </select>
+            Documentos (Opcional)
+          </label>
+          </div>
           <button
             type="button"
             onClick={handleAddDocument}
-            className="
-              bg-[var(--trustless-secondary-btn-bg)]
-              text-[var(--trustless-secondary-btn-text)]
-              border border-[var(--trustless-secondary-btn-border)]
-              rounded-md px-3 py-1.5
-              hover:bg-[var(--trustless-secondary-btn-hover-bg)]
-              transition
-            "
+            className="button-add"
           >
             Agregar
           </button>
         </div>
-
-        <div className="mt-2 space-y-2">
-          {currentDocuments.map((docId) => (
-            <div
-              key={docId}
-              className="
-                flex justify-between items-center
-                bg-[var(--trustless-doc-list-bg)]
-                border border-[var(--trustless-doc-list-border)]
-                text-[var(--trustless-doc-list-text)]
-                text-sm rounded-md px-3 py-2
-              "
-            >
-              <span className="text-white">{documentTypes[docId]}</span>
-              <button
-                type="button"
-                onClick={() => handleRemoveDocument(docId)}
-                className="
-                  bg-[var(--trustless-secondary-btn-bg)]
-                  text-[var(--trustless-secondary-btn-text)]
-                  border border-[var(--trustless-secondary-btn-border)]
-                  rounded-md px-3 py-1.5
-                  hover:bg-[var(--trustless-secondary-btn-hover-bg)]
-                  transition
-                "
+        {Boolean(currentDocuments.length) &&
+        <div className="mt-4 mx-4 py-2  px-1 border border-site-primary text-primary rounded-sm  justify-start">
+          {Boolean(currentDocuments.length) && currentDocuments.map((docId) => (
+            <div className="w-max-w-16 flex gap-2 place-items-baseline" key={docId}>
+              <div className="flex items-center gap-2">
+              </div>
+              <div
+                key={docId}
+                className="max-w-sm truncate"
               >
-                Quitar
-              </button>
+                <button className="text-site-primary text-xs font-semibold wrap hover:cursor-pointer" onClick={() => handleRemoveDocument(docId)} title="Click para Remover" >
+                      * {documentTypes[docId]}
+                </button>
+                </div>
+
             </div>
           ))}
-        </div>
-
+        </div>}
         {errors.documents && (
-          <p className="mt-1 text-sm text-[var(--trustless-error-text)]">
-            {errors.documents.message}
-          </p>
+          <p className="mt-1 text-sm text-error">{errors.documents.message}</p>
         )}
       </div>
 
       <button
         type="submit"
-        className="
-          bg-[var(--trustless-btn-bg)]
-          text-[var(--trustless-btn-text)]
-          font-semibold rounded-md
-          px-5 py-2.5 shadow
-          hover:bg-[var(--trustless-btn-hover-bg)]
-          focus:ring-4 focus:ring-[var(--trustless-btn-focus-ring)]
-          transition
-        "
+        className=" 
+          button-submit-form m-4  md:w-32"
       >
-        Crear Contrato
+        Nuevo
       </button>
     </form>
+    </div>
   )
 }
 

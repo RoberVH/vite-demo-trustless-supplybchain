@@ -1,14 +1,19 @@
-// src/lib/validators/productValidator.ts
+// src/lib/validators/contractValidator.ts
 import * as v from 'valibot';
 
 // This is a mapping for the document selector for display purposes.
 // It's not part of the validation schema itself but is related.
 export const documentTypes: { [key: number]: string } = {
-  1: 'Factura',
-  2: 'Certificado de Analisis',
-  3: 'Certificado de Origen',
-  4: 'Conocimiento de Embarque'
+  1: 'Certificado de Análisis',
+  2: 'Certificado de Origen',
+  3: 'Factura Comercial',
+  4: 'Conocimiento de Embarque',
+  5: 'Package Slip',
+  6: 'Packing List',
+  7: 'Póliza de Seguro',
+  8: ' Intencionalmente largo para probar margenes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
 };
+
 
 // Custom validation function to check for max two decimal places
 const isCurrency = (input: number) => {
@@ -21,7 +26,7 @@ export const ContractSchema = v.object({
   unit: v.pipe(
     v.number('Debe ser un número.'),
     v.integer('Debe ser un número entero.'),
-    v.minValue(0, 'Debe ser 0 o un valor positivo.')
+    v.minValue(1, 'Debe ser 1 o mayor.')
   ),
   unitPrice: v.pipe(
     v.number('Debe ser un número.'),

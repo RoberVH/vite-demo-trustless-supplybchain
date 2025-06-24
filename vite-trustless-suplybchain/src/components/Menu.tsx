@@ -39,8 +39,6 @@ export const menuItems: MenuItem[] = [
  */
 const Menu: React.FC<MenuProps> = ({ className = "", onSelect, selected, setSelected }) => {
   
-
-
   /**
    * Handler for clicking a menu item.
    * 1) Update internal “selected” state (for underline styling).
@@ -54,15 +52,16 @@ const Menu: React.FC<MenuProps> = ({ className = "", onSelect, selected, setSele
   };
 
   return (
-    <nav>
+    <nav className=" border border-gray-200 p-4 rounded-4xl w-full flex justify-center items-center">
       <ul className={`${className} ${className.includes("flex-col") ? "space-y-2" : "space-x-4"} `}>
         {menuItems.map((item) => (
           <li key={item.idx}>
             <button
-              className={`px-3 py-1 transition ${
+              className={`px-3 py-1 transition  text-sm text-menu-primary relative 
+                ${
                 selected === item.idx
-                  ? "md:border-b-2 md:border-white"
-                  : "hover:bg-white hover:text-blue-600 hover:border-b-2 "
+                  ? "menu-selected"
+                  : "hover:scale-115"
               }`}
               onClick={() => handleClick(item.idx)}
             >

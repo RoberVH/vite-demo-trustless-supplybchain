@@ -53,10 +53,14 @@ export default tseslint.config({
 })
 ```
 ### Project Setup
+Project uses  stylelint linter (https://stylelint.io/)
+
 ```
 pnpm create vite trustless-sypplybchain --template react-ts
 cd trustless-sypplybchain
 pnpm add -D  @tailwindcss/vite
+pnpm add open-props
+# if not previously on machine:  pnpm approve-builds  (select tailwind/oxide and esbuild)
 
 ```
 #### Configure Project

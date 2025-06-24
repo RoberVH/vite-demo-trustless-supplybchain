@@ -6,7 +6,7 @@ import { type SubmitHandler } from 'react-hook-form';
 function CreateContractPage() {
   
   // This is where you define what happens on a successful submission
-  const handleProductSubmit: SubmitHandler<ContractFormDataType> = (data) => {
+  const handleContractSubmit: SubmitHandler<ContractFormDataType> = (data) => {
     // The 'data' object is fully validated and typed according to your Valibot schema
     console.log('SUCCESS:', data);
     
@@ -21,13 +21,8 @@ function CreateContractPage() {
   };
 
   return (
-    <div className="container mx-auto py-10 ">
-      <h1 className="text-3xl font-bold text-blue-900 mb-6 text-center">Crear Nuevo Contrato Compra</h1>
-      {/* The ProductForm component is clean. It doesn't know what will happen
-        with the data. It only knows it needs to collect it, validate it,
-        and pass it up to its parent via the onSubmit prop.
-      */}
-      <CreateContractForm onSubmit={handleProductSubmit} />
+    <div className="mt-8  ">
+      <CreateContractForm onSubmit={handleContractSubmit} />
     </div>
   );
 }
